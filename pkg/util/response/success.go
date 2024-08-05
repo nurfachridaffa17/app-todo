@@ -44,7 +44,7 @@ type successResponseNil struct {
 type successResponseWithTotal struct {
 	Meta  Meta        `json:"meta"`
 	Data  interface{} `json:"data"`
-	Total int         `json:"total"`
+	Total int64       `json:"total"`
 	Code  int         `json:"code"`
 }
 
@@ -130,7 +130,7 @@ func SuccessBuilder(res *Success, data interface{}) *Success {
 	return res
 }
 
-func SuccessBuilderWithTotal(res *SuccessWithTotal, data interface{}, total int) *SuccessWithTotal {
+func SuccessBuilderWithTotal(res *SuccessWithTotal, data interface{}, total int64) *SuccessWithTotal {
 	res.Response.Data = data
 	res.Response.Total = total
 	return res
@@ -160,7 +160,7 @@ func SuccessResponse(data interface{}) *Success {
 	return SuccessBuilder(&SuccessConstant.OK, data)
 }
 
-func SuccessResponseWithTotal(data interface{}, total int) *SuccessWithTotal {
+func SuccessResponseWithTotal(data interface{}, total int64) *SuccessWithTotal {
 	return SuccessBuilderWithTotal(&SuccessConstantWithTotal.OK, data, total)
 }
 
