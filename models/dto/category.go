@@ -16,16 +16,20 @@ type (
 	}
 
 	CreateCategory struct {
-		Name   string `json:"name"`
-		UserID string `json:"user_id"`
+		Name      string `json:"name"`
+		UserID    uint   `json:"user_id"`
+		CreatedBy int    `json:"created_by"`
 	}
 
 	UpdateCategory struct {
-		Name string `json:"name"`
+		Name      string `json:"name"`
+		UserID    uint   `json:"user_id"`
+		UpdatedBy int    `json:"updated_by"`
 	}
 
 	DeleteCategory struct {
-		ID int `json:"id"`
+		ID        int `json:"id"`
+		DeletedBy int `json:"deleted_by"`
 	}
 )
 

@@ -11,7 +11,7 @@ import (
 type MasterCategoryEntity struct {
 	ID     int    `json:"id" gorm:"primaryKey"`
 	Name   string `json:"name"`
-	UserID string `json:"user_id"`
+	UserID uint   `json:"user_id"`
 }
 
 type MasterCategoryModel struct {

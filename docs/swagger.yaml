@@ -1,0 +1,246 @@
+basePath: /api/v1
+definitions:
+  base.PaginationInfo:
+    properties:
+      count:
+        type: integer
+      more_records:
+        type: boolean
+      page:
+        type: integer
+      page_size:
+        type: integer
+      total_page:
+        type: integer
+    type: object
+  dto.CategoryRes:
+    properties:
+      created:
+        type: string
+      createdby:
+        type: integer
+      deleted:
+        type: string
+      deletedby:
+        type: integer
+      id:
+        type: integer
+      name:
+        type: string
+      updated:
+        type: string
+      updatedby:
+        type: integer
+      user_id:
+        type: integer
+    type: object
+  dto.CreateCategory:
+    properties:
+      created_by:
+        type: integer
+      name:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  dto.UpdateCategory:
+    properties:
+      name:
+        type: string
+      updated_by:
+        type: integer
+      user_id:
+        type: integer
+    type: object
+  response.Error:
+    properties:
+      code:
+        type: integer
+      error_message: {}
+      response:
+        $ref: '#/definitions/response.errorResponse'
+    type: object
+  response.Meta:
+    properties:
+      info:
+        $ref: '#/definitions/base.PaginationInfo'
+      message:
+        type: string
+      success:
+        type: boolean
+    type: object
+  response.errorResponse:
+    properties:
+      error:
+        type: string
+      meta:
+        $ref: '#/definitions/response.Meta'
+    type: object
+info:
+  contact: {}
+  description: This is an swagger for To Do App API
+  license:
+    name: Apache 2.0
+  termsOfService: http://swagger.io/terms/
+  title: Swagger To Do App API
+  version: "1.0"
+paths:
+  /categ/categories:
+    get:
+      description: FindAll Category
+      parameters:
+      - description: search
+        in: query
+        name: search
+        type: string
+      - description: page
+        in: query
+        name: page
+        type: integer
+      - description: limit
+        in: query
+        name: limit
+        type: integer
+      - description: filter
+        in: query
+        name: filter
+        type: integer
+      - description: name
+        in: query
+        name: name
+        type: string
+      - description: user_id
+        in: query
+        name: user_id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.CategoryRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      summary: FindAll
+      tags:
+      - Category
+    post:
+      description: Create
+      parameters:
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.CreateCategory'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.CategoryRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      summary: Create
+      tags:
+      - Category
+  /categ/categories/{id}:
+    delete:
+      description: Delete
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.CategoryRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      summary: Delete
+      tags:
+      - Category
+    get:
+      description: FindByID
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.CategoryRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      summary: FindByID
+      tags:
+      - Category
+    put:
+      description: Update
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.UpdateCategory'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.CategoryRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      summary: Update
+      tags:
+      - Category
+swagger: "2.0"
