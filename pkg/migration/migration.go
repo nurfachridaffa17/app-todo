@@ -33,6 +33,7 @@ func Init() {
 		constant.DB_NAME: &migration{
 			DbModels: &[]interface{}{
 				model.MasterTaskModel{},
+				model.MasterCategoryModel{},
 			},
 			IsAutoMigrate: true,
 		},
