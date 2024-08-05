@@ -19,13 +19,11 @@ func NewEnv() *env {
 
 func (*env) Load() {
 	var err error
-	mode := flag.String("mode", "dev", "dev, prod or stage")
+	mode := flag.String("mode", "dev", "prod or stage")
 	flag.Parse()
 	rootPath := file.GetRootDirectory()
 
 	switch *mode {
-	case "dev":
-		err = godotenv.Load(rootPath + "/.env.development")
 	case "prod":
 		err = godotenv.Load(rootPath + "/.env.production")
 	case "stage":
