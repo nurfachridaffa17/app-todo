@@ -20,6 +20,8 @@ type (
 		Description string `json:"description"`
 		DueDate     string `json:"due_date"`
 		Status      string `json:"status"`
+		CategoryID  int    `json:"category_id"`
+		Createdby   int    `json:"createdby"`
 	}
 
 	UpdateTask struct {
@@ -27,10 +29,19 @@ type (
 		Description string `json:"description"`
 		DueDate     string `json:"due_date"`
 		Status      string `json:"status"`
+		Updatedby   int    `json:"updatedby"`
+		CategoryID  int    `json:"category_id"`
 	}
 
 	DeleteTask struct {
 		ID int `json:"id"`
+	}
+)
+
+type (
+	CreateTaskRes struct {
+		model.MasterTaskModel
+		Category CategoryRes
 	}
 )
 

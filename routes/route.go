@@ -21,4 +21,5 @@ func Init(g *echo.Group) {
 	})
 
 	handler.NewHandlerCategory(db).Route(g.Group("/categ"))
+	handler.NewHandlerTask(db).Route(g.Group("/task"))
 }

@@ -34,6 +34,7 @@ func Init() {
 			DbModels: &[]interface{}{
 				model.MasterTaskModel{},
 				model.MasterCategoryModel{},
+				model.TTaskCategoryModel{},
 			},
 			IsAutoMigrate: true,
 		},
