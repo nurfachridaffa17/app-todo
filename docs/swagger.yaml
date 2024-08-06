@@ -43,6 +43,48 @@ definitions:
       user_id:
         type: integer
     type: object
+  dto.CreateTask:
+    properties:
+      category_id:
+        type: integer
+      createdby:
+        type: integer
+      description:
+        type: string
+      due_date:
+        type: string
+      status:
+        type: string
+      title:
+        type: string
+    type: object
+  dto.CreateTaskRes:
+    properties:
+      category:
+        $ref: '#/definitions/dto.CategoryRes'
+      created:
+        type: string
+      createdby:
+        type: integer
+      deleted:
+        type: string
+      deletedby:
+        type: integer
+      description:
+        type: string
+      due_date:
+        type: string
+      id:
+        type: integer
+      status:
+        type: string
+      title:
+        type: string
+      updated:
+        type: string
+      updatedby:
+        type: integer
+    type: object
   dto.UpdateCategory:
     properties:
       name:
@@ -50,6 +92,21 @@ definitions:
       updated_by:
         type: integer
       user_id:
+        type: integer
+    type: object
+  dto.UpdateTask:
+    properties:
+      category_id:
+        type: integer
+      description:
+        type: string
+      due_date:
+        type: string
+      status:
+        type: string
+      title:
+        type: string
+      updatedby:
         type: integer
     type: object
   response.Error:
@@ -243,4 +300,65 @@ paths:
       summary: Update
       tags:
       - Category
+  /task/task:
+    post:
+      description: Create Task
+      parameters:
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/dto.CreateTask'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.CreateTaskRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      summary: Create
+      tags:
+      - Task
+  /task/task/{id}:
+    put:
+      description: Update Task
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/dto.UpdateTask'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.CreateTaskRes'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      summary: Update
+      tags:
+      - Task
 swagger: "2.0"
